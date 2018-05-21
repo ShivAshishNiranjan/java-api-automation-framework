@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Simple Post Test">
+
+    <test name="Simple Post test">
+        <classes>
+            <class name="SimplePostTest"></class>
+        </classes>
+    </test>
+
+</suite>

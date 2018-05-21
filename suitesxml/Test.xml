@@ -2,5 +2,6 @@
 <suite name="Master">
     <suite-files>
         <suite-file path="SimpleGetTest.xml"></suite-file>
+        <suite-file path="SimplePostTest.xml"></suite-file>
     </suite-files>
 </suite>
