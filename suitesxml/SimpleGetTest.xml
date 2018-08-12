@@ -3,7 +3,7 @@
 
     <test name="Simple Get test">
         <classes>
-            <class name="SimpleGetTest"></class>
+            <class name="test.SimpleGetTest"></class>
         </classes>
     </test>
 
