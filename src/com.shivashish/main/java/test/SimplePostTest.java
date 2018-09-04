@@ -1,6 +1,7 @@
 package test;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
@@ -18,7 +19,7 @@ public class SimplePostTest {
 	public void RegistrationSuccessful()
 	{
 		RestAssured.baseURI ="http://restapi.demoqa.com/customer";
-		RequestSpecification request = RestAssured.given();
+		RequestSpecification httpRequest = RestAssured.given();
 
 		JSONObject requestParams = new JSONObject();
 		requestParams.put("FirstName", "Virender12"); // Cast
@@ -27,8 +28,8 @@ public class SimplePostTest {
 		requestParams.put("Password", "password123");
 
 		requestParams.put("Email",  "sample2ee26d912@gmail.com");
-		request.body(requestParams.toString());
-		Response response = request.post("/register");
+		httpRequest.body(requestParams.toString());
+		Response response = httpRequest.request(Method.POST,"/register");
 
 		int statusCode = response.getStatusCode();
 		Assert.assertEquals(statusCode, 200);
