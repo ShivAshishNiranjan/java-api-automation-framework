@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Master">
     <suite-files>
-        <suite-file path="SimpleGetTest.xml"></suite-file>
-        <suite-file path="SimplePostTest.xml"></suite-file>
+        <suite-file path="SimpleTest.xml"></suite-file>
     </suite-files>
 </suite>

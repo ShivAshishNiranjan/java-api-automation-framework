@@ -3,7 +3,7 @@
 
     <test name="Simple Post test">
         <classes>
-            <class name="test.SimplePostTest"></class>
+            <class name="com.shivashish.test.SimplePostTest"></class>
         </classes>
     </test>
 

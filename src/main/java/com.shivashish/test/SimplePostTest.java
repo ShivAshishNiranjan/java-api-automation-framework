@@ -1,4 +1,4 @@
-package test;
+package com.shivashish.test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;

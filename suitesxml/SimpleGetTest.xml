@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Simple Get Test">
+<suite name="Simple Get Test" thread-count = "3" parallel="tests">
 
     <test name="Simple Get test">
         <classes>
-            <class name="test.SimpleGetTest"></class>
+            <class name="com.shivashish.test.SimpleGetTest"></class>
         </classes>
     </test>
 
