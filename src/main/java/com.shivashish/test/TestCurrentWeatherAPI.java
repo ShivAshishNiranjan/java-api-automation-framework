@@ -9,6 +9,9 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestCurrentWeatherAPI {
 
@@ -19,7 +22,7 @@ public class TestCurrentWeatherAPI {
 
 	@BeforeClass
 	public void beforeClass() {
-		logger.info("In Before Class method");
+		logger.debug("In Before Class method");
 		getCurrentWeather = new GetCurrentWeather();
 	}
 
@@ -34,10 +37,30 @@ public class TestCurrentWeatherAPI {
 	}
 
 
-	@Test
-	public void TestCurrentWeatherInCity() {
+	@DataProvider(name = "CityNames" , parallel = true)
+	public Object[][] getCityName()
+	{
 
-		getCurrentWeather.getCurrentWeatherOfCity("London");
+		List<String> cities = Arrays.asList("Delhi","Mumbai","Calcutta");
+
+		Object[][] cityNames = new Object[cities.size()][];
+
+		int i =0;
+		for(String city : cities)
+		{
+			cityNames[i] = new String[1];
+			cityNames[i][0] = city;
+			i++;
+		}
+
+		return  cityNames;
+
+	}
+
+	@Test(dataProvider = "CityNames")
+	public void testCurrentWeatherInCity(String cityName) {
+
+		getCurrentWeather.getCurrentWeatherOfCity(cityName);
 		softAssert.assertTrue(getCurrentWeather.getStatusCode()==200,"Get Current Weather API Repsonse Code is Incorrect");
 		softAssert.assertTrue(JsonUtils.isJSONValid(getCurrentWeather.getApiResponse()) ,"Get Current Weather API Repsonse is Not Valid Json");
 
