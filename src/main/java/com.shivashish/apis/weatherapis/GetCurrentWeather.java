@@ -32,7 +32,7 @@ public class GetCurrentWeather {
 		apiResponse = response.getBody().asString();
 
 		statusCode = response.getStatusCode();
-		logger.debug("Response Body is => {} ", apiResponse);
+		logger.info("Response Body is => {} ", apiResponse);
 		logger.debug("Response Code is => {} ", statusCode);
 
 
