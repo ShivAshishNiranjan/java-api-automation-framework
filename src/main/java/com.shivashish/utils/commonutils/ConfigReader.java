@@ -80,7 +80,7 @@ public class ConfigReader {
 
 		while (keys.hasNext()) {
 			String key[] = keys.next().split("\\.");
-			allProperties.add(key[1].toString());
+			allProperties.add(key[1]);
 		}
 
 		return allProperties;
@@ -230,10 +230,9 @@ public class ConfigReader {
 	 * @param propertyName         name of property to be modified
 	 * @param updatedPropertyValue new value of the property
 	 * @throws ConfigurationException
-	 * @throws FileNotFoundException
 	 */
 	public static synchronized void updateValueInConfigFile(String filePath, String fileName, String sectionName, String propertyName, String updatedPropertyValue)
-			throws ConfigurationException, FileNotFoundException {
+			throws ConfigurationException {
 		propertyName = propertyName.trim();
 		Configurations configs = new Configurations();
 
@@ -267,5 +266,5 @@ public class ConfigReader {
 			}
 		}
 	}
-	
+
 }

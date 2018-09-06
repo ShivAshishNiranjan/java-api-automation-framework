@@ -1,5 +1,6 @@
 package com.shivashish.apis.weatherapis;
 
+import com.shivashish.helper.config.ConfigureConstantFields;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -22,17 +23,17 @@ public class GetCurrentWeather {
 	}
 
 	public void getCurrentWeatherOfCity(String city) {
-		RestAssured.baseURI = "http://api.openweathermap.org/data/2.5";
+		RestAssured.baseURI = ConfigureConstantFields.getConstantFieldsValue("baseuri");
 
 		RequestSpecification httpRequest = RestAssured.given();
 
-		httpRequest.param("q", city).param("appid", "2552b9adeb625469c78933edb12f574c");
+		httpRequest.param("q", city).param("appid", ConfigureConstantFields.getConstantFieldsValue("appid"));
 		Response response = httpRequest.request(Method.GET, "/weather");
 
 		apiResponse = response.getBody().asString();
 
 		statusCode = response.getStatusCode();
-		logger.info("Response Body is => {} ", apiResponse);
+		logger.debug("Response Body is => {} ", apiResponse);
 		logger.debug("Response Code is => {} ", statusCode);
 
 

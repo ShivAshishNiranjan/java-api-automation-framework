@@ -6,6 +6,7 @@
 
 
     <suite-files>
+        <suite-file path="ConfigureConstant.xml"></suite-file>
         <suite-file path="WeatherAPI.xml"></suite-file>
     </suite-files>
 </suite>

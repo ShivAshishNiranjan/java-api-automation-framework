@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Configuring the Constant keys" >
+
+    <test name="Configure Constant Fields">
+
+        <classes>
+            <class name="com.shivashish.helper.config.ConfigureConstantFields"></class>
+        </classes>
+    </test>
+
+
+</suite>

@@ -32,6 +32,7 @@ public class TestCurrentWeatherAPI {
 	public void beforeMethod(Method method) {
 		logger.debug("In Before Method");
 		logger.debug("method name is: {} ", method.getName());
+		softAssert = new SoftAssert();
 		logger.debug("***********************************************************************************************************************");
 
 	}
@@ -40,7 +41,7 @@ public class TestCurrentWeatherAPI {
 	@DataProvider(name = "CityNames", parallel = false)
 	public Object[][] getCityName() {
 
-		List<String> cities = Arrays.asList("Delhi", "Mumbai", "Calcutta" , "Chennai");
+		List<String> cities = Arrays.asList("Delhi", "Mumbai", "Calcutta", "Chennai");
 
 		Object[][] cityNames = new Object[cities.size()][];
 
@@ -58,22 +59,28 @@ public class TestCurrentWeatherAPI {
 	@Test(dataProvider = "CityNames")
 	public void testCurrentWeatherInCity(String cityName) {
 
-		softAssert = new SoftAssert();
-		getCurrentWeather.getCurrentWeatherOfCity(cityName);
-		softAssert.assertTrue(getCurrentWeather.getStatusCode() == 200, "Get Current Weather API Repsonse Code is Incorrect");
-		softAssert.assertTrue(JsonUtils.isJSONValid(getCurrentWeather.getApiResponse()), "Get Current Weather API Repsonse is Not Valid Json");
 
 		Gson gson = new Gson();
-		CurrentWeather currentWeatherInCity = gson.fromJson(getCurrentWeather.getApiResponse(), CurrentWeather.class);
-		softAssert.assertTrue(currentWeatherInCity.getName().toLowerCase().contentEquals(cityName.toLowerCase()), "Incorrect City Detail in Json Response : Expected" +
-				": " +  cityName.toLowerCase() + " but found : " + currentWeatherInCity.getName().toLowerCase());
-		softAssert.assertAll();
+		getCurrentWeather.getCurrentWeatherOfCity(cityName);
+		softAssert.assertTrue(getCurrentWeather.getStatusCode() == 200, "Get Current Weather API Repsonse Code is Incorrect");
+
+		boolean isAPIResponseIsJson = JsonUtils.isJSONValid(getCurrentWeather.getApiResponse());
+		softAssert.assertTrue(isAPIResponseIsJson, "Get Current Weather API Repsonse is Not Valid Json");
+
+
+		if (isAPIResponseIsJson) {
+			CurrentWeather currentWeatherInCity = gson.fromJson(getCurrentWeather.getApiResponse(), CurrentWeather.class);
+			softAssert.assertTrue(currentWeatherInCity.getName().toLowerCase().contentEquals(cityName.toLowerCase()), "Incorrect City Detail in Json Response : Expected" +
+					": " + cityName.toLowerCase() + " but found : " + currentWeatherInCity.getName().toLowerCase());
+		}
+
 
 	}
 
 	@AfterMethod
 	public void afterMethod(ITestResult result) {
 
+		softAssert.assertAll();
 		logger.debug("In After Method");
 		logger.debug("method name is: {}", result.getMethod().getMethodName());
 		logger.debug("***********************************************************************************************************************");
