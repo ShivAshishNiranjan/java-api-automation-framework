@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Weather APIs Suit ">
+
+    <test name="Current Weather Data">
+        <classes>
+            <class name="com.shivashish.test.TestCurrentWeatherAPI"></class>
+        </classes>
+    </test>
+
+    <test name="Register Weather Station">
+        <classes>
+            <class name="com.shivashish.test.TestRegisterWeatherStation"></class>
+        </classes>
+    </test>
+
+</suite>

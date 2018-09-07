@@ -62,10 +62,10 @@ public class TestCurrentWeatherAPI {
 
 		Gson gson = new Gson();
 		getCurrentWeather.getCurrentWeatherOfCity(cityName);
-		softAssert.assertTrue(getCurrentWeather.getStatusCode() == 200, "Get Current Weather API Repsonse Code is Incorrect");
+		softAssert.assertTrue(getCurrentWeather.getStatusCode() == 200, "Get Current Weather API Response Code is Incorrect");
 
 		boolean isAPIResponseIsJson = JsonUtils.isJSONValid(getCurrentWeather.getApiResponse());
-		softAssert.assertTrue(isAPIResponseIsJson, "Get Current Weather API Repsonse is Not Valid Json");
+		softAssert.assertTrue(isAPIResponseIsJson, "Get Current Weather API Response is Not Valid Json");
 
 
 		if (isAPIResponseIsJson) {
