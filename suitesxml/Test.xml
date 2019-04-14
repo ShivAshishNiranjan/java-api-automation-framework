@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Master">
-    <!--<suite-files>-->
-        <!--<suite-file path="SimpleTest.xml"></suite-file>-->
-    <!--</suite-files>-->
-
-
     <suite-files>
         <suite-file path="ConfigureConstant.xml"></suite-file>
-        <suite-file path="TestWeatherAPIs.xml"></suite-file>
+        <suite-file path="SimpleInstagramTest.xml"></suite-file>
     </suite-files>
 </suite>

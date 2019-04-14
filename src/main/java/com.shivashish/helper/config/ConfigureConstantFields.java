@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConfigureConstantFields {
+public class  ConfigureConstantFields {
 	private final static Logger logger = LoggerFactory.getLogger(ConfigureConstantFields.class);
 	private static Map<String, String> constantFields = new HashMap<String, String>();
 	private static Map<String, String> configFilesMap = new HashMap<String, String>();
