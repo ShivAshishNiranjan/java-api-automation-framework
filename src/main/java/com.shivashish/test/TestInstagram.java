@@ -1,8 +1,11 @@
 package com.shivashish.test;
 
 import com.shivashish.apis.weatherapis.GetCurrentWeather;
+import com.shivashish.helper.config.ConfigureConstantFields;
+import com.shivashish.utils.commonutils.ConfigReader;
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.brunocvcunha.instagram4j.requests.InstagramLikeRequest;
+import org.brunocvcunha.instagram4j.requests.InstagramPostCommentRequest;
 import org.brunocvcunha.instagram4j.requests.InstagramTagFeedRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedItem;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramFeedResult;
@@ -45,23 +48,28 @@ public class TestInstagram {
 
     @Test()
     public void testIgLogin() throws IOException, InterruptedException {
-        logger.info("username is :[{}]", System.getProperty("username"));
-        logger.info("Password is :[{}]", System.getProperty("password"));
-        logger.info("Hashtag is :[{}]", System.getProperty("hashtags"));
+        String username = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
+                ConfigureConstantFields.getInstaConfigFileName(),"default","username");
+        String password = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
+                ConfigureConstantFields.getInstaConfigFileName(),"default","password");
 
-        Instagram4j instagram = Instagram4j.builder().username(System.getProperty("username")).password(System.getProperty("password")).build();
+        //Instagram4j instagram = Instagram4j.builder().username(System.getProperty("username")).password(System.getProperty("password")).build();
+        Instagram4j instagram = Instagram4j.builder().username(username).password(password).build();
         instagram.setup();
         instagram.login();
 
-        String[] hashtags = System.getProperty("hashtags").trim().split(" ");
+        //String[] hashtags = System.getProperty("hashtags").trim().split(" ");
+        String[] hashtags = ("travelgram").trim().split(" ");
 
         for (String hashtag : hashtags) {
-            logger.info("");
+            logger.info("Testing hastag is [{}]",hashtag);
             InstagramFeedResult tagFeed = instagram.sendRequest(new InstagramTagFeedRequest(hashtag));
             for (InstagramFeedItem feedResult : tagFeed.getItems()) {
                 logger.info("Post ID: " + feedResult.getPk());
                 Thread.sleep(5000);
                 instagram.sendRequest(new InstagramLikeRequest(feedResult.getPk()));
+                Thread.sleep(5000);
+                instagram.sendRequest(new InstagramPostCommentRequest(feedResult.getPk(), "Nice One"));
             }
         }
     }

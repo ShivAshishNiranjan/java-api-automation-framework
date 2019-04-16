@@ -3,6 +3,7 @@ package com.shivashish.utils.commonutils;
 import org.apache.commons.configuration2.INIConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,7 @@ public class ConfigReader {
 
 	public static Map<String, String> configReader(String filePath, String fileName, String delimiter) throws IOException {
 		Map<String, String> properties = new HashMap<String, String>();
-		BufferedReader reader = new BufferedReader(new FileReader(filePath + "//" + fileName));
+		BufferedReader reader = new BufferedReader(new FileReader(filePath + "/" + fileName));
 		String oneLine;
 
 		while ((oneLine = reader.readLine()) != null) {
@@ -24,7 +25,7 @@ public class ConfigReader {
 			//Skip Comment Lines
 			if (oneLine.length() > 1 && oneLine.charAt(0) == '/' && oneLine.charAt(1) == '/')
 				continue;
-			String words[] = oneLine.split(delimiter);
+			String[] words = oneLine.split(delimiter);
 			if (words.length == 1 || words[1].trim().equalsIgnoreCase("") || words[1] == null) {
 				properties.put(words[0].trim().toLowerCase(), null);
 				continue;
@@ -34,23 +35,29 @@ public class ConfigReader {
 		return properties;
 	}
 
-	public static String getValueFromConfigFile(String filePath, String fileName, String propertyName) throws ConfigurationException {
+	public static String getValueFromConfigFile(String filePath, String fileName, String propertyName) {
 		return getValueFromConfigFile(filePath, fileName, null, propertyName);
 	}
 
-	public static String getValueFromConfigFile(String filePath, String fileName, String sectionName, String propertyName) throws ConfigurationException {
-		String columnName = null;
-		propertyName = propertyName.trim();
-		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+	public static String getValueFromConfigFile(String filePath, String fileName, String sectionName, String propertyName) {
+		try {
+			String columnName = null;
+			propertyName = propertyName.trim();
+			Configurations configs = new Configurations();
+			INIConfiguration config = configs.ini(filePath + "/" + fileName);
 
-		if (sectionName != null && config.getProperty(sectionName.toLowerCase() + "." + propertyName.toLowerCase()) != null)
-			columnName = config.getProperty(sectionName.toLowerCase() + "." + propertyName.toLowerCase()).toString();
+			if (sectionName != null && config.getProperty(sectionName.toLowerCase() + "." + propertyName.toLowerCase()) != null)
+				columnName = config.getProperty(sectionName.toLowerCase() + "." + propertyName.toLowerCase()).toString();
 
-		else if (config.getProperty(propertyName.toLowerCase()) != null)
-			columnName = config.getProperty(propertyName.toLowerCase()).toString();
+			else if (config.getProperty(propertyName.toLowerCase()) != null)
+				columnName = config.getProperty(propertyName.toLowerCase()).toString();
 
-		return columnName;
+			return columnName;
+		} catch (Exception e) {
+			Assert.fail("Error: Reading in Config File: " + fileName + ", Section Name: " + sectionName
+					+ " ,Key Name: " + propertyName + ", Error Message: " + e.getMessage());
+			return null;
+		}
 	}
 
 	public static String getValueFromConfigFileCaseSensitive(String filePath, String fileName, String propertyName) throws ConfigurationException {
@@ -61,7 +68,7 @@ public class ConfigReader {
 		String columnName = null;
 		propertyName = propertyName.trim();
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 
 		if (sectionName != null && config.getProperty(sectionName + "." + propertyName) != null)
 			columnName = config.getProperty(sectionName + "." + propertyName).toString();
@@ -74,12 +81,12 @@ public class ConfigReader {
 
 	public static List<String> getAllPropertiesOfSection(String filePath, String fileName, String sectionName) throws ConfigurationException {
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 		Iterator<String> keys = config.getKeys(sectionName.toLowerCase());
 		List<String> allProperties = new ArrayList<String>();
 
 		while (keys.hasNext()) {
-			String key[] = keys.next().split("\\.");
+			String[] key = keys.next().split("\\.");
 			allProperties.add(key[1]);
 		}
 
@@ -88,7 +95,7 @@ public class ConfigReader {
 
 	public static boolean containsSection(String filePath, String fileName, String sectionName) throws ConfigurationException {
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 
 		boolean sectionFound = false;
 		Iterator<String> sections = config.getSections().iterator();
@@ -106,7 +113,7 @@ public class ConfigReader {
 	public static Map<String, String> getAllConstantProperties(String filePath, String fileName, String sectionName) throws ConfigurationException {
 		Map<String, String> allDefaultProperties = new LinkedHashMap<>();
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 		Iterator<String> keys = null;
 		if (sectionName == null) {
 			keys = config.getKeys();
@@ -140,7 +147,7 @@ public class ConfigReader {
 
 	public static List<String> getAllSectionNames(String filePath, String fileName) throws ConfigurationException {
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 
 		List<String> sectionNameList = new ArrayList<String>();
 		Iterator<String> sections = config.getSections().iterator();
@@ -156,7 +163,7 @@ public class ConfigReader {
 	public static Map<String, String> getAllConstantPropertiesCaseSensitive(String filePath, String fileName, String sectionName) throws ConfigurationException {
 		Map<String, String> allDefaultProperties = new HashMap<String, String>();
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 		Iterator<String> keys = config.getKeys();
 		if (sectionName == null) {
 			keys = config.getKeys();
@@ -189,7 +196,7 @@ public class ConfigReader {
 		boolean propertyFound = false;
 		property = property.trim();
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 
 		if (sectionName != null && config.containsKey(sectionName.toLowerCase() + "." + property.toLowerCase()))
 			propertyFound = true;
@@ -207,7 +214,7 @@ public class ConfigReader {
 		boolean propertyFound = false;
 		property = property.trim();
 		Configurations configs = new Configurations();
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 
 		if (sectionName != null && config.containsKey(sectionName + "." + property))
 			propertyFound = true;
@@ -236,7 +243,7 @@ public class ConfigReader {
 		propertyName = propertyName.trim();
 		Configurations configs = new Configurations();
 
-		INIConfiguration config = configs.ini(filePath + "//" + fileName);
+		INIConfiguration config = configs.ini(filePath + "/" + fileName);
 		boolean isFileEdited = false;
 
 		if (sectionName != null && config.getProperty(sectionName.toLowerCase() + "." + propertyName.toLowerCase()) != null) {
@@ -258,13 +265,14 @@ public class ConfigReader {
 
 		if (isFileEdited) {
 			try {
-				config.write(new FileWriter(filePath + "//" + fileName));
+				config.write(new FileWriter(filePath + "/" + fileName));
 			} catch (IOException e) {
-				logger.error("Got Exception while updating the config file : [ {} ], Cause : [ {} ], stacktrace : [ {} ]", filePath + "//" + fileName,
+				logger.error("Got Exception while updating the config file : [ {} ], Cause : [ {} ], stacktrace : [ {} ]", filePath + "/" + fileName,
 						e.getMessage(), e.getStackTrace());
 				e.printStackTrace();
 			}
 		}
 	}
+
 
 }
