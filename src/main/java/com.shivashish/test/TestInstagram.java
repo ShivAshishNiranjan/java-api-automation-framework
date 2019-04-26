@@ -158,12 +158,6 @@ public class TestInstagram {
 
             for (InstagramFeedItem feedResult : tagFeed.getItems()) {
 
-                if (hastagsPoolForLikes.contains(hashtag) || hastagsPoolForFollowers.contains(hashtag)) {
-                    likeCountOnPostLowerLimit = 0;
-                    likeCountOnPostUpperLimit = 20;
-
-                }
-
                 logger.info("Post ID: " + feedResult.getPk());
                 int likeCountOnPost = feedResult.getLike_count();
                 logger.info("Post Like Count : [{}]", likeCountOnPost);
