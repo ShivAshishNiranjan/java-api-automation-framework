@@ -32,6 +32,39 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Method to append Str to given File
+     *
+     * @param fileName
+     * @param str
+     */
+    public static void appendStrToFile(String fileName,
+                                       String str) {
+        try {
+
+            // Open given file in append mode.
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(fileName, true));
+            out.write(str);
+            out.close();
+        } catch (IOException e) {
+            System.out.println("exception occoured" + e);
+        }
+    }
+
+    public static void deleteTheContentOfGivenFile(String fileName) {
+        try {
+            File file = new File(fileName);
+            PrintWriter writer = new PrintWriter(file);
+            writer.print("");
+            writer.close();
+        } catch (Exception e) {
+            logger.error("Error While Deleting All Content in fileName : [{}] , Error : [{}]", fileName,
+                    e.getLocalizedMessage());
+
+        }
+    }
+
     // this function will create a Directory with Given Path iff not Exist
     // @Generic
     public boolean createDirIfNotExist(String Path) {
@@ -74,7 +107,6 @@ public class FileUtils {
         }
 
     }
-
 
     public boolean dumpResponseInFile(String filename, String output) {
         File file = new File(filename);
