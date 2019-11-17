@@ -23,12 +23,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <username>${env.USERNAME}</username>
-                        <password>${env.PASSWORD}</password>
-                        <hashtags>${env.HASHTAGS}</hashtags>
-                    </systemPropertyVariables>
-
                     <suiteXmlFiles>
                         <suiteXmlFile>suitesxml/SimpleInstagramTest.xml</suiteXmlFile>
                     </suiteXmlFiles>
