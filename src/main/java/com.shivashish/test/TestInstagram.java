@@ -112,61 +112,68 @@ public class TestInstagram {
         }
 
 
-        int countForIndividualHashtag = 25;
+        int countForIndividualHashtag = 20;
+        Boolean stopTurant = false;
 
 
         for (String hashtag : hashtags) {
+            if (!stopTurant) {
+                logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                logger.info("Liking post from hashtag : [{}]", hashtag);
+
+                logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                InstagramFeedResult tagFeed = tagFeeds.get(hashtag);
+
+                logger.info("**************************************************************************");
+                logger.info("Total Result are :[{}]", tagFeed.getItems().size());
+                logger.info("**************************************************************************");
 
 
-            logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            logger.info("Liking post from hashtag : [{}]", hashtag);
+                int j = 0;
+                for (InstagramFeedItem feedResult : tagFeed.getItems()) {
+                    if (j < countForIndividualHashtag) {
+                        int randomWait = RandomNumberUtils.generateRandomInt(randomTimeForPolling);
+                        logger.info("Post ID: " + feedResult.getPk());
+                        int likeCountOnPost = feedResult.getLike_count();
+                        logger.info("Post Like Count : [{}]", likeCountOnPost);
+                        boolean validationCondition = (likeCountOnPost >= likeCountOnPostLowerLimit &&
+                                likeCountOnPost <= likeCountOnPostUpperLimit &&
+                                !uniqueUserNameList.contains(feedResult.getUser().getUsername()));
 
-            logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            InstagramFeedResult tagFeed = tagFeeds.get(hashtag);
+                        if (validationCondition) {
 
-            logger.info("**************************************************************************");
-            logger.info("Total Result are :[{}]", tagFeed.getItems().size());
-            logger.info("**************************************************************************");
+                            logger.info("UserName : [{}]", feedResult.getUser().getUsername());
+                            uniqueUserNameList.add(feedResult.getUser().getUsername());
 
 
-            int j = 0;
-            for (InstagramFeedItem feedResult : tagFeed.getItems()) {
-                if (j < countForIndividualHashtag) {
-                    int randomWait = RandomNumberUtils.generateRandomInt(randomTimeForPolling);
-                    logger.info("Post ID: " + feedResult.getPk());
-                    int likeCountOnPost = feedResult.getLike_count();
-                    logger.info("Post Like Count : [{}]", likeCountOnPost);
-                    boolean validationCondition = (likeCountOnPost >= likeCountOnPostLowerLimit &&
-                            likeCountOnPost <= likeCountOnPostUpperLimit &&
-                            !uniqueUserNameList.contains(feedResult.getUser().getUsername()));
+                            logger.info("Follower Count : [{}]", feedResult.getUser().getFollower_count());
 
-                    if (validationCondition) {
+                            InstagramLikeResult instagramLikeResult = account.sendRequest(new InstagramLikeRequest(feedResult.getPk()));
+                            likeCount++;
 
-                        logger.info("UserName : [{}]", feedResult.getUser().getUsername());
-                        uniqueUserNameList.add(feedResult.getUser().getUsername());
-                        logger.info("Follower Count : [{}]", feedResult.getUser().getFollower_count());
-                        likeCount++;
-                        InstagramLikeResult instagramLikeResult = account.sendRequest(new InstagramLikeRequest(feedResult.getPk()));
-                        // if spam reported we will stop
-                        if (instagramLikeResult.isSpam())
-                            break;
+                            // if spam reported we will stop
+                            if (instagramLikeResult.isSpam()) {
+                                stopTurant = true;
+                                break;
+                            }
 
-                        // to string response from instagramLikeResult
-                        // InstagramLikeResult(super=StatusResult(status=fail, message=feedback_required, spam=true, lock=false, feedback_title=Action Blocked, feedback_message=This action was blocked. Please try again later. We restrict certain content and actions to protect our community. Tell us if you think we made a mistake., error_type=null, checkpoint_url=null), spam=true, feedback_ignore_label=OK, feedback_title=Action Blocked, feedback_message=This action was blocked. Please try again later. We restrict certain content and actions to protect our community. Tell us if you think we made a mistake., feedback_url=repute/report_problem/instagram_like_add/, feedback_action=report_problem, feedback_appeal_label=Tell us)
+                            // to string response from instagramLikeResult
+                            // InstagramLikeResult(super=StatusResult(status=fail, message=feedback_required, spam=true, lock=false, feedback_title=Action Blocked, feedback_message=This action was blocked. Please try again later. We restrict certain content and actions to protect our community. Tell us if you think we made a mistake., error_type=null, checkpoint_url=null), spam=true, feedback_ignore_label=OK, feedback_title=Action Blocked, feedback_message=This action was blocked. Please try again later. We restrict certain content and actions to protect our community. Tell us if you think we made a mistake., feedback_url=repute/report_problem/instagram_like_add/, feedback_action=report_problem, feedback_appeal_label=Tell us)
 
-                        fileUtils.dumpResponseInFile(filename, todaysDate + "->" + likeCount);
-                        logger.info("Waiting for [{}] seconds", randomWait);
-                        logger.info("Liking post from hashtag : [{}]", hashtag);
-                        logger.info("--------------------------------------------------------");
-                        Thread.sleep(randomWait * 1000);
-                        j++;
-                        logger.info("--------------------------------------------------------");
+                            fileUtils.dumpResponseInFile(filename, todaysDate + "->" + likeCount);
+                            logger.info("Waiting for [{}] seconds", randomWait);
+                            logger.info("Liking post from hashtag : [{}]", hashtag);
+                            logger.info("--------------------------------------------------------");
+                            Thread.sleep(randomWait * 1000);
+                            j++;
+                            logger.info("--------------------------------------------------------");
+                        } else {
+                            logger.info("--------------------------------------------------------");
+                        }
                     } else {
-                        logger.info("--------------------------------------------------------");
+                        logger.info("Enough for This Hashtag [{}] Plz", hashtag);
+                        break;
                     }
-                } else {
-                    logger.info("Enough for This Hashtag [{}] Plz", hashtag);
-                    break;
                 }
             }
         }

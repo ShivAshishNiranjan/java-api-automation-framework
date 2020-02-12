@@ -11,11 +11,16 @@ import java.util.List;
  */
 public class Hashtags {
 
-    public static List<String>  hastagsPoolForLikes = new ArrayList<>(Arrays.asList("like4like", "likeforlike", "likes",
+    public static List<String> hastagsPoolForLikes = new ArrayList<>(Arrays.asList("like4like", "likeforlike", "likes",
             "likeforfollow", "likesforlikes", "like4follow", "likes4likes", "likeback", "likeme", "likeforlikes",
             "like4likes", "liker", "likeit", "likebackteam", "likeall", "likers", "likealways", "liketkit", "liketeam",
             "likeforlikealways", "likeforlikeback", "likesreturned", "likeforfollowers", "like4likeback", "likesforfollow",
             "likeforme", "LikeThis", "likebackalways", "likeaboss"));
+
+    public static List<String> hastagsPoolForPhotography = new ArrayList<>(Arrays.asList("photography",
+            "blackandwhitephotography", "naturephotography",
+            "photographylovers", "Instaphoto", "Instaphoto", "photogram", "photographyislife", "justgoshoot", "picoftheday",
+            "photooftheday"));
 
 
     public static List<String> hastagsPoolForFollowers = new ArrayList<>(Arrays.asList("follow", "followforfollowback",
