@@ -90,29 +90,29 @@ public class TestInstagram {
     @Test()
     public void testIgLogin() throws IOException, InterruptedException {
         String username = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
-                ConfigureConstantFields.getInstaConfigFileName(), "default", "username");
+                ConfigureConstantFields.getInstaConfigFileName(), "default", "username1");
         String password = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
-                ConfigureConstantFields.getInstaConfigFileName(), "default", "password");
+                ConfigureConstantFields.getInstaConfigFileName(), "default", "password1");
 
         myInstagram = new MyInstagram(username, password);
         account = myInstagram.getAccount();
 
 
-        int randomTimeForPolling = 10;
+        int randomTimeForPolling = 25;
         int likeCountOnPostLowerLimit = 0;
         int likeCountOnPostUpperLimit = 30;
 
         List<String> uniqueUserNameList = new ArrayList<>();
 
-        List<String> hashtags = hashtagManager.hashtagtoOperate();
+        List<String> hashtags = hashtagManager.hashtagtoOperate(username);
+        logger.info("hastags to operate [{}]", hashtags);
         Map<String, InstagramFeedResult> tagFeeds = new HashMap();
         for (String hashtag : hashtags) {
             InstagramFeedResult tagFeed = account.sendRequest(new InstagramTagFeedRequest(hashtag));
             tagFeeds.put(hashtag, tagFeed);
         }
 
-
-        int countForIndividualHashtag = 20;
+        int countForIndividualHashtag = 30;
         Boolean stopTurant = false;
 
 
