@@ -30,7 +30,6 @@ public class HashtagManager {
             hashtags.add(Hashtags.hasttagsSet1.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet1.size())));
             hashtags.add(Hashtags.hasttagsSet2.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet2.size())));
             return hashtags;
-
         }
     }
 }

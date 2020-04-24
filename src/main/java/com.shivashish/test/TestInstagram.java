@@ -90,9 +90,9 @@ public class TestInstagram {
     @Test()
     public void testIgLogin() throws IOException, InterruptedException {
         String username = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
-                ConfigureConstantFields.getInstaConfigFileName(), "default", "username1");
+                ConfigureConstantFields.getInstaConfigFileName(), "default", "username");
         String password = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
-                ConfigureConstantFields.getInstaConfigFileName(), "default", "password1");
+                ConfigureConstantFields.getInstaConfigFileName(), "default", "password");
 
         myInstagram = new MyInstagram(username, password);
         account = myInstagram.getAccount();
@@ -105,7 +105,7 @@ public class TestInstagram {
         List<String> uniqueUserNameList = new ArrayList<>();
 
         List<String> hashtags = hashtagManager.hashtagtoOperate(username);
-        logger.info("hastags to operate [{}]", hashtags);
+        logger.info("hastags to operate {}", hashtags);
         Map<String, InstagramFeedResult> tagFeeds = new HashMap();
         for (String hashtag : hashtags) {
             InstagramFeedResult tagFeed = account.sendRequest(new InstagramTagFeedRequest(hashtag));

@@ -1,8 +1,11 @@
 package com.shivashish.helper.ig;
 
+import com.shivashish.utils.commonutils.RandomNumberUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * @author : shiv.ashish@grofers.com
@@ -17,17 +20,12 @@ public class Hashtags {
             "likeforlikealways", "likeforlikeback", "likesreturned", "likeforfollowers", "like4likeback", "likesforfollow",
             "likeforme", "LikeThis", "likebackalways", "likeaboss"));
 
-    public static List<String> hastagsPoolForPhotography = new ArrayList<>(Arrays.asList("photography",
-            "blackandwhitephotography", "naturephotography",
-            "photographylovers", "Instaphoto", "Instaphoto", "photogram", "photographyislife", "justgoshoot", "picoftheday",
-            "photooftheday"));
-
 
     public static List<String> hastagsPoolForFollowers = new ArrayList<>(Arrays.asList("follow", "followforfollowback",
-            "followfollow",
-            "follow4like", "following", "followers", "followｍe", "follow4followback", "follow_me", "followmeto", "follower",
-            "followtofollow", "follow4likes", "followforafollow", "followus", "followtrick", "followtrain", "followyou", "followmenow",
-            "followalways", "followfollowfollow", "followmeback", "follownow", "followmee", "followforlike", "likeforfollow", "followmeplease",
+            "followfollow", "follow4like", "following", "followers", "followｍe", "follow4followback", "follow_me",
+            "followmeto", "follower", "followtofollow", "follow4likes", "followforafollow", "followus", "followtrick",
+            "followtrain", "followyou", "followmenow", "followalways", "followfollowfollow", "followmeback", "follownow"
+            , "followmee", "followforlike", "likeforfollow", "followmeplease",
             "followbackalways", "followparty", "followbackinstantly"));
 
 
@@ -42,6 +40,60 @@ public class Hashtags {
             , "travelmore", "instavacation", "travelcommunity", "travelporn", "ilovetravel", "endlesstraveling", "travelwriter", "traveltheworld", "travelpic", "incredibleindia",
             "streetphotographyindia", "igtraveller", "worldtraveler", "travels", "travelpics", "traveldiaries", "travelphotographer",
             "travelgram", "travelphotography", "instatravel", "traveling", "travel", "likeforlikes", "dslrofficial"));
+
+
+    public static List<String> hastagsPoolForPhotography = new ArrayList<>(Arrays.asList("photography",
+            "blackandwhitephotography", "naturephotography",
+            "photographylovers", "Instaphoto", "Instaphoto", "photogram", "photographyislife", "justgoshoot", "picoftheday",
+            "photooftheday"));
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static String himanchal = "#himachalpradesh#himalayas#himachal#india#travel#mountains#travelphotography#nature" +
+            "#incredibleindia#wanderlust#travelgram#instahimachal#photography#travelblogger#manali#naturephotography#spiti#himachaltourism#shimla#indiapictures#landscape#traveller#instagood#himachaldiaries#photooftheday#love#travelrealindia#instatravel#trekking#spitivalley";
+    public static List<String> hastagsPoolForHimachal = convertToListofString(himanchal);
+
+    public static String uttarakhand = "#uttarakhand  #india  #himalayas  #travel  #nature  #mountains  #incredibleindia  #travelphotography  #photography  #wanderlust  #himachal  #travelgram  #uttarakhandheaven  #dehradun  #rishikesh  #naturephotography  #love  #uttarakhandtourism  #pahadi  #nainital  #himalaya  #instagood  #uttarakhanddiaries  #himachalpradesh  #garhwal  #photooftheday  #travelblogger  #landscape  #trekking  #adventure";
+    public static List<String> hastagsPoolForuttarakhand = convertToListofString(uttarakhand);
+
+    public static String sikkim = "#himachalpradesh#himalayas#himachal#india#travel#mountains#travelphotography" +
+            "#nature#incredibleindia#wanderlust#travelgram#instahimachal#photography#travelblogger#manali#naturephotography#spiti#himachaltourism#shimla#indiapictures#landscape#traveller#instagood#himachaldiaries#photooftheday#love#travelrealindia#instatravel#trekking#spitivalley";
+    public static List<String> hastagsPoolForsikkim = convertToListofString(sikkim);
+
+
+    public static String temples = "#temple  #india  #travel  #photography  #travelphotography  #architecture  " +
+            "#nature  #incredibleindia  #photooftheday  #instagood  #travelgram  #wanderlust  #love  #picoftheday  #instagram  #instatravel  #hindu  #art  #beautiful  #peace  #god  #culture  #travelblogger  #shiva  #religion  #karnataka  #sky  #hinduism  #naturephotography  #traveller";
+
+    public static String manali = "#manali  #india  #himachal  #travel  #himachalpradesh  #himalayas  #mountains  " +
+            "#nature  #shimla  #kullu  #photography  #travelphotography  #incredibleindia  #wanderlust  #leh  #travelgram  #kasol  #chamba  #delhi  #love  #ladakh  #instahimachal  #trip  #mandi  #adventure  #instagood  #manalidiaries  #chandigarh  #traveller  #travelblogger";
+
+
+    public static List<String> convertToListofString(String hashtags) {
+        return new ArrayList<>(Arrays.asList(hashtags.replaceAll("//s", "")
+                .replaceAll("[\\n\\t ]", "").split("#")));
+    }
+
+    public static void main(String[] args) {
+
+
+        List<String> hashtagsTargetting = new ArrayList<>(
+                Arrays.asList(manali, temples));
+
+        List<String> finalHashtags = new ArrayList<>();
+
+
+        for (String hashtag : hashtagsTargetting) {
+            finalHashtags.addAll(RandomNumberUtils.getRandomElements(convertToListofString(hashtag), 12));
+        }
+
+        finalHashtags.addAll(RandomNumberUtils.getRandomElements(hastagsPoolForLikes, 2));
+        finalHashtags.addAll(RandomNumberUtils.getRandomElements(hastagsPoolForFollowers, 2));
+
+        for (String tag : finalHashtags)
+            System.out.println("#" + tag);
+
+
+    }
 
 
 }
