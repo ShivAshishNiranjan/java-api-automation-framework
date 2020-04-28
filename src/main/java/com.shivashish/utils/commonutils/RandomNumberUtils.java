@@ -10,12 +10,28 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomNumberUtils {
-
+    /**
+     * This Method will give the random number between 0 to upperRange(exclusive)
+     *
+     * @param upperRange
+     * @return
+     */
     public static int generateRandomInt(int upperRange) {
         Random random = new Random();
         return random.nextInt(upperRange);
     }
 
+    /**
+     * This Method will give the random number between minimum and maximum
+     *
+     * @param minimum
+     * @param maximum
+     * @return
+     */
+    public static int generateRandomInt(int minimum, int maximum) {
+        Random rand = new Random();
+        return minimum + rand.nextInt((maximum - minimum) + 1);
+    }
 
     /**
      * This function will give the random list of size sizeofRandomLists from give list

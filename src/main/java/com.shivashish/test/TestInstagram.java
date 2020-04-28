@@ -90,15 +90,16 @@ public class TestInstagram {
     @Test()
     public void testIgLogin() throws IOException, InterruptedException {
         String username = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
-                ConfigureConstantFields.getInstaConfigFileName(), "default", "username");
+                ConfigureConstantFields.getInstaConfigFileName(), "default", "username2");
         String password = ConfigReader.getValueFromConfigFile(ConfigureConstantFields.getConfigFilesPath(),
-                ConfigureConstantFields.getInstaConfigFileName(), "default", "password");
+                ConfigureConstantFields.getInstaConfigFileName(), "default", "password2");
 
         myInstagram = new MyInstagram(username, password);
         account = myInstagram.getAccount();
 
 
-        int randomTimeForPolling = 25;
+        int randomTimeForPollingUpperLimit = 25;
+        int randomTimeForPollingLowerLimit = 10;
         int likeCountOnPostLowerLimit = 0;
         int likeCountOnPostUpperLimit = 30;
 
@@ -112,7 +113,7 @@ public class TestInstagram {
             tagFeeds.put(hashtag, tagFeed);
         }
 
-        int countForIndividualHashtag = 30;
+        int countForIndividualHashtag = 20;
         Boolean stopTurant = false;
 
 
@@ -132,7 +133,8 @@ public class TestInstagram {
                 int j = 0;
                 for (InstagramFeedItem feedResult : tagFeed.getItems()) {
                     if (j < countForIndividualHashtag) {
-                        int randomWait = RandomNumberUtils.generateRandomInt(randomTimeForPolling);
+                        int randomWait = RandomNumberUtils.generateRandomInt(randomTimeForPollingLowerLimit,
+                                randomTimeForPollingUpperLimit);
                         logger.info("Post ID: " + feedResult.getPk());
                         int likeCountOnPost = feedResult.getLike_count();
                         logger.info("Post Like Count : [{}]", likeCountOnPost);

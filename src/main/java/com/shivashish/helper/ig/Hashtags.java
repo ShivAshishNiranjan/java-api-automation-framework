@@ -23,49 +23,42 @@ public class Hashtags {
 
     public static List<String> hastagsPoolForFollowers = new ArrayList<>(Arrays.asList("follow", "followforfollowback",
             "followfollow", "follow4like", "following", "followers", "followｍe", "follow4followback", "follow_me",
-            "followmeto", "follower", "followtofollow", "follow4likes", "followforafollow", "followus", "followtrick",
+            "followmeto", "follower", "followtofollow", "follow4likes", "followforafollow", "followus",
             "followtrain", "followyou", "followmenow", "followalways", "followfollowfollow", "followmeback", "follownow"
             , "followmee", "followforlike", "likeforfollow", "followmeplease",
             "followbackalways", "followparty", "followbackinstantly"));
 
 
-    public static List<String> hasttagsSet1 = new ArrayList<>(Arrays.asList("jaw_dropping_shots", "splendid_shotz",
+    public static List<String> hasttagsSet = new ArrayList<>(Arrays.asList("jaw_dropping_shots", "splendid_shotz",
             "longexpohunter", "longexpoelite",
             "ig_shotz_le", "longexposure_shots", "earthexperience", "hubs_united", "global_hotshotz", "ig_exquisite", "splendid_shotz",
             "longexpohunter", "geonusantara", "loves_world", "longexposure_shots", "earthexperience", "big_shotz", "global_hotshotz",
             "igbest_shotz", "main_vision", "master_shots", "ourplanetdaily", "ig_dynamic", "awesome_earthpix",
-            "worldbestshot", "thebest_capture"));
-
-    public static List<String> hasttagsSet2 = new ArrayList<>(Arrays.asList("ig_exquisite", "jaw_dropping_shots"
+            "worldbestshot", "thebest_capture", "ig_exquisite", "jaw_dropping_shots"
             , "travelmore", "instavacation", "travelcommunity", "travelporn", "ilovetravel", "endlesstraveling", "travelwriter", "traveltheworld", "travelpic", "incredibleindia",
             "streetphotographyindia", "igtraveller", "worldtraveler", "travels", "travelpics", "traveldiaries", "travelphotographer",
             "travelgram", "travelphotography", "instatravel", "traveling", "travel", "likeforlikes", "dslrofficial"));
 
 
-    public static List<String> hastagsPoolForPhotography = new ArrayList<>(Arrays.asList("photography",
-            "blackandwhitephotography", "naturephotography",
-            "photographylovers", "Instaphoto", "Instaphoto", "photogram", "photographyislife", "justgoshoot", "picoftheday",
-            "photooftheday"));
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public static String himanchal = "#himachalpradesh#himalayas#himachal#india#travel#mountains#travelphotography#nature" +
             "#incredibleindia#wanderlust#travelgram#instahimachal#photography#travelblogger#manali#naturephotography#spiti#himachaltourism#shimla#indiapictures#landscape#traveller#instagood#himachaldiaries#photooftheday#love#travelrealindia#instatravel#trekking#spitivalley";
-    public static List<String> hastagsPoolForHimachal = convertToListofString(himanchal);
+
+    public static String manali = "#manali  #india  #himachal  #travel  #himachalpradesh  #himalayas  #mountains" +
+            "#nature  #shimla  #kullu  #photography  #travelphotography  #incredibleindia  #wanderlust  #leh  #travelgram  #kasol  #chamba  #delhi  #love  #ladakh  #instahimachal  #trip  #mandi  #adventure  #instagood  #manalidiaries  #chandigarh  #traveller  #travelblogger";
+
+
+    public static String Photography = "#photography#blackandwhitephotography#naturephotography#photographylovers#Instaphoto#Instaphoto#photogram#photographyislife#justgoshoot#picoftheday#photooftheday";
 
     public static String uttarakhand = "#uttarakhand  #india  #himalayas  #travel  #nature  #mountains  #incredibleindia  #travelphotography  #photography  #wanderlust  #himachal  #travelgram  #uttarakhandheaven  #dehradun  #rishikesh  #naturephotography  #love  #uttarakhandtourism  #pahadi  #nainital  #himalaya  #instagood  #uttarakhanddiaries  #himachalpradesh  #garhwal  #photooftheday  #travelblogger  #landscape  #trekking  #adventure";
-    public static List<String> hastagsPoolForuttarakhand = convertToListofString(uttarakhand);
+
 
     public static String sikkim = "#himachalpradesh#himalayas#himachal#india#travel#mountains#travelphotography" +
             "#nature#incredibleindia#wanderlust#travelgram#instahimachal#photography#travelblogger#manali#naturephotography#spiti#himachaltourism#shimla#indiapictures#landscape#traveller#instagood#himachaldiaries#photooftheday#love#travelrealindia#instatravel#trekking#spitivalley";
-    public static List<String> hastagsPoolForsikkim = convertToListofString(sikkim);
 
 
-    public static String temples = "#temple  #india  #travel  #photography  #travelphotography  #architecture  " +
+    public static String temples = "#temple  #india  #travel  #photography  #travelphotography  #architecture" +
             "#nature  #incredibleindia  #photooftheday  #instagood  #travelgram  #wanderlust  #love  #picoftheday  #instagram  #instatravel  #hindu  #art  #beautiful  #peace  #god  #culture  #travelblogger  #shiva  #religion  #karnataka  #sky  #hinduism  #naturephotography  #traveller";
-
-    public static String manali = "#manali  #india  #himachal  #travel  #himachalpradesh  #himalayas  #mountains  " +
-            "#nature  #shimla  #kullu  #photography  #travelphotography  #incredibleindia  #wanderlust  #leh  #travelgram  #kasol  #chamba  #delhi  #love  #ladakh  #instahimachal  #trip  #mandi  #adventure  #instagood  #manalidiaries  #chandigarh  #traveller  #travelblogger";
 
 
     public static List<String> convertToListofString(String hashtags) {
@@ -83,7 +76,7 @@ public class Hashtags {
 
 
         for (String hashtag : hashtagsTargetting) {
-            finalHashtags.addAll(RandomNumberUtils.getRandomElements(convertToListofString(hashtag), 12));
+            finalHashtags.addAll(RandomNumberUtils.getRandomElements(convertToListofString(hashtag), 10));
         }
 
         finalHashtags.addAll(RandomNumberUtils.getRandomElements(hastagsPoolForLikes, 2));
@@ -91,7 +84,6 @@ public class Hashtags {
 
         for (String tag : finalHashtags)
             System.out.println("#" + tag);
-
 
     }
 
