@@ -37,7 +37,7 @@ public class Hashtags {
             "worldbestshot", "thebest_capture", "ig_exquisite", "jaw_dropping_shots"
             , "travelmore", "instavacation", "travelcommunity", "travelporn", "ilovetravel", "endlesstraveling", "travelwriter", "traveltheworld", "travelpic", "incredibleindia",
             "streetphotographyindia", "igtraveller", "worldtraveler", "travels", "travelpics", "traveldiaries", "travelphotographer",
-            "travelgram", "travelphotography", "instatravel", "traveling", "travel", "likeforlikes", "dslrofficial"));
+            "travelgram", "travelphotography", "instatravel", "traveling", "travel", "dslrofficial"));
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,17 @@ public class Hashtags {
     public static String temples = "#temple  #india  #travel  #photography  #travelphotography  #architecture" +
             "#nature  #incredibleindia  #photooftheday  #instagood  #travelgram  #wanderlust  #love  #picoftheday  #instagram  #instatravel  #hindu  #art  #beautiful  #peace  #god  #culture  #travelblogger  #shiva  #religion  #karnataka  #sky  #hinduism  #naturephotography  #traveller";
 
+    public static String bjp = "#bjp #india #modi #narendramodi #amitshah #congress  #rss #rahulgandhi #politics" +
+            "#indian #hindu #namo #bjpindia #news #indianpolitics #election #hinduism #bharat #yogiadityanath #inc #indianarmy ";
+
+    public static String coronavirus = "#indiafightscorona #covid #corona #coronavirus #coronaindia #socialdistancing" +
+            " #coronaviruspandemic #chinavirus #coronaprotection #coronavirusoutbreak ";
+
+    public static String secularchacha = "#indiafightscorona #covid #corona #coronavirus #coronaindia " +
+            "#socialdistancing" +
+            " #coronaviruspandemic #chinavirus #coronaprotection #coronavirusoutbreak ";
+
+    public static String secular_chacha = "";
 
     public static List<String> convertToListofString(String hashtags) {
         return new ArrayList<>(Arrays.asList(hashtags.replaceAll("//s", "")

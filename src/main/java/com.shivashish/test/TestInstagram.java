@@ -98,8 +98,8 @@ public class TestInstagram {
         account = myInstagram.getAccount();
 
 
-        int randomTimeForPollingUpperLimit = 25;
-        int randomTimeForPollingLowerLimit = 10;
+        int randomTimeForPollingUpperLimit = 20;
+        int randomTimeForPollingLowerLimit = 5;
         int likeCountOnPostLowerLimit = 0;
         int likeCountOnPostUpperLimit = 30;
 
@@ -113,7 +113,7 @@ public class TestInstagram {
             tagFeeds.put(hashtag, tagFeed);
         }
 
-        int countForIndividualHashtag = 20;
+        int countForIndividualHashtag = 25;
         Boolean stopTurant = false;
 
 

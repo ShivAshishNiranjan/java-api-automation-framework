@@ -20,9 +20,14 @@ public class HashtagManager {
             else
                 hashtags.add(Hashtags.hastagsPoolForFollowers.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForFollowers.size())));
 
+            if (RandomNumberUtils.generateRandomInt(2) % 2 == 0)
+                hashtags.add(Hashtags.hastagsPoolForLikes.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForLikes.size())));
+            else
+                hashtags.add(Hashtags.hastagsPoolForFollowers.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForFollowers.size())));
+
+//            hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
             hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
             return hashtags;
-
             //hashtags.add("followtrick");
             //hashtags.add("followbackinstantly"); // bahot hard
 
