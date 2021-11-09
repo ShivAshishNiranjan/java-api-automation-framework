@@ -37,7 +37,7 @@ public class Hashtags {
             "worldbestshot", "thebest_capture", "ig_exquisite", "jaw_dropping_shots"
             , "travelmore", "instavacation", "travelcommunity", "travelporn", "ilovetravel", "endlesstraveling", "travelwriter", "traveltheworld", "travelpic", "incredibleindia",
             "streetphotographyindia", "igtraveller", "worldtraveler", "travels", "travelpics", "traveldiaries", "travelphotographer",
-            "travelgram", "travelphotography", "instatravel", "traveling", "travel", "dslrofficial"));
+            "travelgram", "travelphotography", "instatravel", "traveling", "travel", "dslrofficial" , "himachalisluv"));
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

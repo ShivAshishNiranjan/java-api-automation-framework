@@ -98,7 +98,7 @@ public class TestInstagram {
         account = myInstagram.getAccount();
 
 
-        int randomTimeForPollingUpperLimit = 20;
+        int randomTimeForPollingUpperLimit = 10;
         int randomTimeForPollingLowerLimit = 5;
         int likeCountOnPostLowerLimit = 0;
         int likeCountOnPostUpperLimit = 30;
@@ -115,7 +115,6 @@ public class TestInstagram {
 
         int countForIndividualHashtag = 25;
         Boolean stopTurant = false;
-
 
         for (String hashtag : hashtags) {
             if (!stopTurant) {

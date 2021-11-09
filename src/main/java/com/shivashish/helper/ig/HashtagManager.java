@@ -4,6 +4,7 @@ import com.shivashish.utils.commonutils.RandomNumberUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author : shiv.ashish@grofers.com
@@ -13,28 +14,24 @@ import java.util.List;
 public class HashtagManager {
     public List<String> hashtagtoOperate(String username) {
         List<String> hashtags = new ArrayList<>();
+        Random r = new Random();
 
-        if (username.contentEquals("shiv_ashish")) {
-            if (RandomNumberUtils.generateRandomInt(2) % 2 == 0)
-                hashtags.add(Hashtags.hastagsPoolForLikes.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForLikes.size())));
-            else
-                hashtags.add(Hashtags.hastagsPoolForFollowers.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForFollowers.size())));
-
-            if (RandomNumberUtils.generateRandomInt(2) % 2 == 0)
-                hashtags.add(Hashtags.hastagsPoolForLikes.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForLikes.size())));
-            else
-                hashtags.add(Hashtags.hastagsPoolForFollowers.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForFollowers.size())));
-
-//            hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
-            hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
-            return hashtags;
-            //hashtags.add("followtrick");
-            //hashtags.add("followbackinstantly"); // bahot hard
-
+        int chance = r.nextInt(2);
+        if (chance == 1) {
+            hashtags.add(Hashtags.hastagsPoolForLikes.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForLikes.size())));
         } else {
-            hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
-            hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
-            return hashtags;
+            hashtags.add(Hashtags.hastagsPoolForFollowers.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForFollowers.size())));
         }
+
+        chance = r.nextInt(2);
+        if (chance == 1) {
+            hashtags.add(Hashtags.hastagsPoolForLikes.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForLikes.size())));
+        } else {
+            hashtags.add(Hashtags.hastagsPoolForFollowers.get(RandomNumberUtils.generateRandomInt(Hashtags.hastagsPoolForFollowers.size())));
+        }
+
+        hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
+        hashtags.add(Hashtags.hasttagsSet.get(RandomNumberUtils.generateRandomInt(Hashtags.hasttagsSet.size())));
+        return hashtags;
     }
 }
