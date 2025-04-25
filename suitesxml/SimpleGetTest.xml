@@ -3,7 +3,7 @@
 
     <test name="Simple Get test">
         <classes>
-            <class name="com.shivashish.test.SimpleGetTest"></class>
+            <class name="com.shivashish.test.SimpleGetTest"/>
         </classes>
     </test>
 

@@ -4,7 +4,7 @@
     <test name="Configure Constant Fields">
 
         <classes>
-            <class name="com.shivashish.helper.config.ConfigureConstantFields"></class>
+            <class name="com.shivashish.helper.config.ConfigureConstantFields"/>
         </classes>
     </test>
 
